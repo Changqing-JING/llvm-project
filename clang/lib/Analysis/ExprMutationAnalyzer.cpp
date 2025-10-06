@@ -789,7 +789,7 @@ ExprMutationAnalyzer::Analyzer::findPointeeToNonConst(const Expr *Exp) {
 
   // Return statement in function with non-const pointer return type
   const auto ReturnAsNonConst = returnStmt(
-      hasDescendant(equalsNode(Exp)), 
+      hasReturnValue(canResolveToExprPointee(Exp)), 
       hasAncestor(functionDecl(returns(NonConstPointerOrDependentType))));
 
   const auto Matches =
